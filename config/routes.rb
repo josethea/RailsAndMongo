@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+
+  resources :players, except: [:show]
+
+  root to: "players#index"
+
+  get 'players/index'
+
+  get 'players/new'
+
+  get 'players/create'
+
+  get 'players/edit'
+
+  get 'players/update'
+
+  get 'players/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

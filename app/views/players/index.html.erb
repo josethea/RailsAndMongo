@@ -1,0 +1,71 @@
+<h1>Jugadores</h1>
+<div class="well">
+  <%= link_to "Nuevo jugador", new_player_path, class: "btn btn-primary" %>
+</div>
+
+<% if flash[:notice] %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>
+        Nombre
+      </th>
+      <th>
+        Apellido
+      </th>
+      <th>
+        Edad
+      </th>
+      <th>
+        Posición
+      </th>
+      <th>
+        Equipo
+      </th>
+      <th>
+        Acción1
+      </th>
+      <th>
+        Acción2
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @players.size == 0 %>
+      <tr>
+        <td colspan="7">No hay jugadores en la tabla</td>
+      </tr>
+    <% else %>
+      <% @players.each do |player| %>
+        <tr>
+          <td>
+            <%= player.first_name %>
+          </td>
+          <td>
+            <%= player.last_name %>
+          </td>
+          <td>
+            <%= player.age %>
+          </td>
+          <td>
+            <%= player.position %>
+          </td>
+          <td>
+            <%= player.team %>
+          </td>
+          <td>
+            <%= link_to "Edit", edit_player_path(player), class: "btn btn-default" %>
+          </td>
+          <td>
+            <%= button_to "Delete", player, method: :delete, data: {confirm: "Are your sure you wish to delete #{player.first_name} #{player.last_name}?"}, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
